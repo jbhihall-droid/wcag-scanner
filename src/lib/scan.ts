@@ -1,5 +1,5 @@
-import { existsSync } from "node:fs";
-import AxeBuilder from "@axe-core/playwright";
+import { existsSync, readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import chromium from "@sparticuz/chromium";
 import { chromium as playwrightChromium } from "playwright-core";
 import type { ScanResult, ScanViolation } from "@/lib/types";
@@ -52,15 +52,23 @@ export async function runAccessibilityScan(inputUrl: string): Promise<ScanResult
     headless: true,
   });
 
+  const context = await browser.newContext();
   try {
-    const page = await browser.newPage({
-      viewport: { width: 1440, height: 960 },
-    });
+    const page = await context.newPage();
+    await page.setViewportSize({ width: 1440, height: 960 });
 
     await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45_000 });
     await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => undefined);
 
-    const axeResult = await new AxeBuilder({ page }).analyze();
+    // Inject axe-core from disk — avoids bundler mangling and eval serialization issues
+    const axeSource = readFileSync(
+      resolve(process.cwd(), "node_modules/axe-core/axe.js"),
+      "utf-8"
+    );
+    await page.addScriptTag({ content: axeSource });
+    const axeResult = await page.evaluate(
+      () => (window as unknown as { axe: { run: () => Promise<{ violations: unknown[] }> } }).axe.run()
+    );
 
     const violations = (axeResult.violations as ScanViolation[]) ?? [];
 
@@ -71,6 +79,7 @@ export async function runAccessibilityScan(inputUrl: string): Promise<ScanResult
       scannedAt: new Date().toISOString(),
     };
   } finally {
+    await context.close();
     await browser.close();
   }
 }

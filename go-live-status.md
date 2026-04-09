@@ -1,29 +1,33 @@
 # WCAG Scanner — Go-Live Status
-**Date:** 2026-04-10  
+**Date:** 2026-04-10 (verified 06:25 ACST)
 **Task:** ENG-014  
-**Status:** LIVE (cloudflare tunnel, awaiting Stripe)
+**Status:** VERIFIED LIVE — build clean, all endpoints green (local + public tunnel), awaiting host Stripe + Vercel
 
 ---
 
 ## Live URL
 
-**https://enrollment-temporal-percentage-gate.trycloudflare.com**
+**https://involving-ranges-sporting-interactive.trycloudflare.com**
 
 > Note: trycloudflare.com URLs are ephemeral (reset on daemon restart).
 > Permanent URL: deploy to Vercel via GitHub import (5 min, no CLI — see DEPLOY.md Step 1).
 
 ---
 
-## Smoke Test Results
+## Smoke Test Results (ENG-014 verified 2026-04-10 06:25 ACST)
 
-| Endpoint | Status | Notes |
-|----------|--------|-------|
-| `GET /` | ✅ HTTP 200 | Landing page, A/B experiment headers set |
-| `POST /api/scan` | ✅ Running | Axe-core audit processing |
-| `POST /api/subscribe` | ✅ `{"ok":true}` | Logs to stdout (no Resend key yet — fine for launch) |
-| `POST /api/checkout` | ✅ 303 redirect | `?checkout=unavailable#pricing` — graceful until Stripe added |
-| `GET /sitemap.xml` | ✅ Static | SEO-ready |
-| `GET /robots.txt` | ✅ Static | No crawl blocks |
+Tested against both localhost:3001 and public tunnel.
+
+| Endpoint | Local | Public | Notes |
+|----------|-------|--------|-------|
+| `GET /` | ✅ 200 | ✅ 200 | Landing page, A/B experiment headers set |
+| `POST /api/scan` | ✅ 2 violations | ✅ 2 violations | axe-core injected from disk, Chromium headless |
+| `POST /api/subscribe` | ✅ `{"ok":true}` | ✅ `{"ok":true}` | Logs to stdout (no Resend key — fine for launch) |
+| `POST /api/checkout` | ✅ 303 graceful | ✅ 303 | Redirects to `?checkout=unavailable#pricing` until Stripe added |
+| `GET /sitemap.xml` | ✅ 200 | ✅ 200 | SEO-ready |
+| `GET /robots.txt` | ✅ 200 | ✅ 200 | No crawl blocks |
+| `npm run build` | ✅ clean | — | TypeScript OK, 9 routes, 0 errors |
+| `git push origin main` | ✅ pushed | — | Commit 43cf4d1 |
 
 ---
 
