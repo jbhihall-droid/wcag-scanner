@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import { ScanForm } from "@/components/scan-form";
 import { EmailCapture } from "@/components/email-capture";
+import { CheckoutBanner } from "@/components/checkout-banner";
 
 export default function Home() {
   return (
@@ -45,6 +47,9 @@ export default function Home() {
             <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Simple pricing</h2>
             <p className="text-slate-400">Start free. Upgrade when you need more.</p>
           </div>
+          <Suspense>
+            <CheckoutBanner />
+          </Suspense>
           <div className="grid gap-6 sm:grid-cols-2 max-w-3xl mx-auto">
             <PricingCard
               tier="Free"

@@ -5,10 +5,9 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? "http://localhost:3000";
 
 export async function POST() {
   if (!process.env.STRIPE_SECRET_KEY || !process.env.STRIPE_PRICE_ID) {
-    return NextResponse.json(
-      { error: "Stripe is not configured. Set STRIPE_SECRET_KEY and STRIPE_PRICE_ID." },
-      { status: 503 }
-    );
+    // Stripe not yet configured — send the user back to the pricing section
+    // with a query param so the page can show a "payment coming soon" notice.
+    return NextResponse.redirect(`${BASE_URL}/?checkout=unavailable#pricing`, 303);
   }
 
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {

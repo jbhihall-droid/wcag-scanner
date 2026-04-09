@@ -2,6 +2,10 @@ import { NextResponse } from "next/server";
 import { runAccessibilityScan } from "@/lib/scan";
 import { checkPaywall, markUsed, extractIp, extractEmail } from "@/lib/paywall";
 
+// Allow up to 60 s on Vercel Pro / Enterprise.
+// Vercel Hobby hard-caps at 10 s — upgrade the project if scans timeout.
+export const maxDuration = 60;
+
 export async function POST(request: Request) {
   // ─── Paywall check ───────────────────────────────────────────────────────
   const ip = extractIp(request.headers);
