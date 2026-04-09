@@ -5,7 +5,8 @@ import { NextResponse } from "next/server";
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 
-const SUBSCRIBERS_PATH = join("/tmp", "wcag-subscribers.json");
+// Use a persistent path when running locally; /tmp on Vercel (Resend handles persistence there)
+const SUBSCRIBERS_PATH = process.env.SUBSCRIBERS_PATH ?? join("/tmp", "wcag-subscribers.json");
 
 function loadSubscribers(): string[] {
   try {
