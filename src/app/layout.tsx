@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,8 +14,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WCAG Scanner",
-  description: "First-pass accessibility audits for modern teams.",
+  title: "WCAG Scanner — Free Accessibility Audit Tool",
+  description: "Scan any public URL for WCAG accessibility violations. Free first-pass audit using axe-core. Built for developers and QA teams.",
+  openGraph: {
+    title: "WCAG Scanner — Free Accessibility Audit Tool",
+    description: "Scan any public URL for WCAG accessibility violations. Free, fast, developer-friendly.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -22,9 +28,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const umamiSrc = process.env.NEXT_PUBLIC_UMAMI_SRC;
+  const umamiId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
+
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="min-h-screen bg-slate-950 font-sans text-white antialiased">{children}</body>
+      <body className="min-h-screen bg-slate-950 font-sans text-white antialiased">
+        {children}
+        {umamiSrc && umamiId && (
+          <Script
+            src={umamiSrc}
+            data-website-id={umamiId}
+            strategy="afterInteractive"
+            defer
+          />
+        )}
+      </body>
     </html>
   );
 }
