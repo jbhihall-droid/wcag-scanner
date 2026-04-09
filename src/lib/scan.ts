@@ -1,5 +1,5 @@
 import { existsSync } from "node:fs";
-import axeCore from "axe-core";
+import AxeBuilder from "@axe-core/playwright";
 import chromium from "@sparticuz/chromium";
 import { chromium as playwrightChromium } from "playwright-core";
 import type { ScanResult, ScanViolation } from "@/lib/types";
@@ -45,9 +45,10 @@ export async function runAccessibilityScan(inputUrl: string): Promise<ScanResult
   const url = normalizeUrl(inputUrl);
   const executablePath = await resolveExecutablePath();
 
+  const isLambda = !!process.env.AWS_LAMBDA_FUNCTION_NAME;
   const browser = await playwrightChromium.launch({
     executablePath,
-    args: chromium.args,
+    args: isLambda ? chromium.args : ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
     headless: true,
   });
 
@@ -58,15 +59,10 @@ export async function runAccessibilityScan(inputUrl: string): Promise<ScanResult
 
     await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45_000 });
     await page.waitForLoadState("networkidle", { timeout: 15_000 }).catch(() => undefined);
-    await page.addScriptTag({ content: axeCore.source });
 
-    const axeResult = await page.evaluate(async () => {
-      return await (window as typeof window & {
-        axe: { run: () => Promise<unknown> };
-      }).axe.run();
-    });
+    const axeResult = await new AxeBuilder({ page }).analyze();
 
-    const violations = (axeResult as { violations: ScanViolation[] }).violations ?? [];
+    const violations = (axeResult.violations as ScanViolation[]) ?? [];
 
     return {
       url,
