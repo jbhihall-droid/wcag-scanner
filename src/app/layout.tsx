@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { ClarityScript } from "@/components/clarity-script";
+import { ClarityAbTag } from "@/components/clarity-ab-tag";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -45,6 +47,8 @@ export default function RootLayout({
             defer
           />
         )}
+        <ClarityScript />
+        <ClarityAbTag />
         <Analytics />
         <SpeedInsights />
       </body>

@@ -2,26 +2,45 @@ import { Suspense } from "react";
 import { ScanForm } from "@/components/scan-form";
 import { EmailCapture } from "@/components/email-capture";
 import { CheckoutBanner } from "@/components/checkout-banner";
+import { CroExperimentNote } from "@/components/cro-experiment-note";
+import { getActiveVariant } from "@/lib/cro";
 
-export default function Home() {
+export default async function Home() {
+  const variant = await getActiveVariant();
+
   return (
     <main className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(34,211,238,0.2),_transparent_35%),linear-gradient(180deg,_#020617,_#111827)] text-white">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-20 px-6 py-16 sm:px-10">
 
         {/* Hero */}
-        <div className="max-w-3xl space-y-6 pt-8">
+        <div id="scan" className="max-w-3xl space-y-6 pt-8">
           <div className="inline-flex items-center rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-cyan-200">
             First-pass WCAG audit for growing teams
           </div>
+          <div className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-medium uppercase tracking-[0.2em] text-slate-300">
+            {variant.badge}
+          </div>
           <h1 className="text-5xl font-semibold tracking-tight sm:text-6xl">
-            Know exactly what&apos;s breaking your site&apos;s accessibility
+            {variant.heroTitle}
           </h1>
           <p className="max-w-2xl text-lg leading-8 text-slate-300 sm:text-xl">
-            Scan any public URL, surface the most important axe-core violations, and get a clean issue list your team can act on fast.
+            {variant.heroBody}
           </p>
-          <ScanForm />
+          <div className="flex flex-col gap-4">
+            <ScanForm ctaLabel={variant.primaryCta} />
+            <div className="flex flex-wrap items-center gap-3 text-sm text-slate-400">
+              <a
+                href="#pricing"
+                className="inline-flex items-center justify-center rounded-2xl border border-white/15 px-4 py-2 font-medium text-white transition hover:border-cyan-400/40 hover:text-cyan-200"
+              >
+                {variant.secondaryCta}
+              </a>
+              <span>Decision rule live: 200 visitors per variant minimum before calling a winner.</span>
+            </div>
+          </div>
+          <CroExperimentNote variantLabel={variant.badge} />
           <p className="text-sm leading-6 text-slate-400">
-            Honest first-pass audit — not a legal compliance certification. Automated checks help you triage fast, then validate with manual testing.
+            Honest first-pass audit, not a legal compliance certification. Automated checks help you triage fast, then validate with manual testing.
           </p>
         </div>
 
@@ -44,8 +63,8 @@ export default function Home() {
         {/* Pricing */}
         <section id="pricing" className="space-y-8">
           <div className="text-center space-y-3">
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Simple pricing</h2>
-            <p className="text-slate-400">Start free. Upgrade when you need more.</p>
+            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">{variant.pricingHeading}</h2>
+            <p className="text-slate-400">{variant.pricingSubheading}</p>
           </div>
           <Suspense>
             <CheckoutBanner />
@@ -70,15 +89,15 @@ export default function Home() {
               tier="Pro"
               price="$9"
               period="/mo"
-              description="For teams shipping accessible products"
+              description={variant.proDescription}
               features={[
                 "Unlimited scans",
                 "Export results as JSON or CSV",
                 "Scan history — compare over time",
                 "Priority email support",
               ]}
-              cta="Upgrade to Pro"
-              ctaHref="/api/checkout"
+              cta={variant.proCta}
+              ctaHref={`/api/checkout?ab=${variant.key}`}
               ctaPost={true}
               highlight={true}
             />
@@ -88,7 +107,7 @@ export default function Home() {
         {/* Email capture */}
         <section className="rounded-3xl border border-white/10 bg-white/5 px-8 py-12 text-center space-y-5 max-w-2xl mx-auto w-full">
           <h2 className="text-2xl font-semibold">Stay updated</h2>
-          <p className="text-slate-400 text-sm">Get notified when new features ship — export, history, API access, and more.</p>
+          <p className="text-slate-400 text-sm">Get notified when new features ship, and if you want, we&apos;ll tell you which CRO variant won once the sample is big enough.</p>
           <EmailCapture />
         </section>
 

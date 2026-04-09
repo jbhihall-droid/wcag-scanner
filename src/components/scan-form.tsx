@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export function ScanForm() {
+export function ScanForm({ ctaLabel = "Scan my site" }: { ctaLabel?: string }) {
   const router = useRouter();
   const [url, setUrl] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,7 +36,7 @@ export function ScanForm() {
         disabled={isSubmitting}
         className="min-h-14 rounded-2xl bg-cyan-400 px-6 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:bg-cyan-200"
       >
-        {isSubmitting ? "Preparing scan..." : "Scan my site"}
+        {isSubmitting ? "Preparing scan..." : ctaLabel}
       </button>
     </form>
   );
