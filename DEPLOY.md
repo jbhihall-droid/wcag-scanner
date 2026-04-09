@@ -1,67 +1,47 @@
 # WCAG Scanner — Go-Live Checklist
 
 Dobby's go-live gate for ENG-001. Complete these steps in order.
-**Time to deploy: ~45 minutes.**
+**Time to deploy: ~20 minutes.**
+
+GitHub: https://github.com/jbhihall-droid/wcag-scanner
 
 ---
 
-## Step 1 — Stripe setup (~15 min)
+## Step 1 — Deploy to Vercel via GitHub import (~5 min, no CLI needed)
 
-1. Create account at https://stripe.com (free)
-2. In the Stripe dashboard:
-   - **API Keys** → copy your **Secret key** (`sk_live_...` for prod, `sk_test_...` to test first)
-   - **Products** → Add product → Name: "WCAG Scanner Pro" → Price: $9.00/month → Recurring → Copy the **Price ID** (`price_...`)
-   - **Webhooks** → Add endpoint:
-     - URL: `https://<your-vercel-url>/api/webhook`
-     - Events: `checkout.session.completed`, `customer.subscription.deleted`, `invoice.paid`, `invoice.payment_failed`
-     - Copy the **Webhook signing secret** (`whsec_...`)
+1. Go to **vercel.com** → New Project
+2. Import `jbhihall-droid/wcag-scanner` from GitHub
+3. Leave all settings as-is (framework is auto-detected as Next.js)
+4. Click **Deploy**
+5. You get a live URL like `https://wcag-scanner-<hash>.vercel.app`
 
----
-
-## Step 2 — Vercel deploy (~10 min)
-
-```bash
-# Authenticate (one-time)
-vercel login
-
-# From the project directory
-cd ~/projects/wcag-scanner
-
-# First deploy — creates the project on Vercel
-vercel
-
-# Get your preview URL, test it works, then promote to prod
-vercel --prod
-```
-
-The default URL will be `https://wcag-scanner-<hash>.vercel.app`.
-If you want a custom domain, add it in the Vercel dashboard after first deploy.
+**Product is live at this point.** Free tier works immediately.
+Upgrade button shows "coming soon" until Stripe is added (Step 2).
 
 ---
 
-## Step 3 — Set env vars on Vercel (~5 min)
+## Step 2 — Stripe setup (~10 min, optional for soft launch)
 
-In the Vercel dashboard → Project → Settings → Environment Variables, add:
+Without Stripe: free tier works, paid tier shows "coming soon" notice.
+With Stripe: full payment flow active.
 
-| Key | Value | Environment |
-|-----|-------|-------------|
-| `STRIPE_SECRET_KEY` | `sk_live_...` | Production |
-| `STRIPE_PRICE_ID` | `price_...` | Production |
-| `STRIPE_WEBHOOK_SECRET` | `whsec_...` | Production |
-| `NEXT_PUBLIC_BASE_URL` | `https://wcag-scanner.vercel.app` | Production |
+1. **dashboard.stripe.com** → Developers → API keys → copy **Secret key**
+2. **Products** → Add product → "WCAG Scanner Pro" → $9.00/month recurring → copy **Price ID**
+3. **Webhooks** → Add endpoint:
+   - URL: `https://<your-vercel-url>/api/webhook`
+   - Events: `checkout.session.completed`, `customer.subscription.deleted`, `invoice.paid`
+   - Copy **Webhook signing secret**
 
-Or push them via CLI:
-```bash
-vercel env add STRIPE_SECRET_KEY production
-vercel env add STRIPE_PRICE_ID production
-vercel env add STRIPE_WEBHOOK_SECRET production
-vercel env add NEXT_PUBLIC_BASE_URL production
-```
+Then add to Vercel → Project → Settings → Environment Variables:
 
-After adding env vars, **redeploy** to pick them up:
-```bash
-vercel --prod
-```
+| Key | Value |
+|-----|-------|
+| `STRIPE_SECRET_KEY` | `sk_live_...` |
+| `STRIPE_PRICE_ID` | `price_...` |
+| `STRIPE_WEBHOOK_SECRET` | `whsec_...` |
+| `NEXT_PUBLIC_BASE_URL` | `https://wcag-scanner.vercel.app` |
+
+**Redeploy** after adding env vars (Vercel dashboard → Deployments → Redeploy).
 
 ---
 
