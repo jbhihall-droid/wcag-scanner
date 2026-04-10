@@ -3,9 +3,6 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import type { ScanResult, ScanViolation, Severity } from "@/lib/types";
-import { UpgradeModal } from "@/components/upgrade-modal";
-
-type PaywallError = { error: "paywall_limit"; used: number; limit: number };
 
 const severityOrder: Severity[] = ["critical", "serious", "moderate", "minor"];
 
@@ -20,7 +17,6 @@ export function ResultsClient({ url }: { url: string }) {
   const [data, setData] = useState<ScanResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [paywall, setPaywall] = useState<PaywallError | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -36,12 +32,7 @@ export function ResultsClient({ url }: { url: string }) {
           body: JSON.stringify({ url }),
         });
 
-        const payload = (await response.json()) as ScanResult & { error?: string } & PaywallError;
-
-        if (response.status === 429 && payload.error === "paywall_limit") {
-          if (!cancelled) setPaywall(payload as PaywallError);
-          return;
-        }
+        const payload = (await response.json()) as ScanResult & { error?: string };
 
         if (!response.ok) {
           throw new Error(payload.error || "Scan failed.");
@@ -85,14 +76,6 @@ export function ResultsClient({ url }: { url: string }) {
   }, [data]);
 
   return (
-    <>
-    {paywall && (
-      <UpgradeModal
-        used={paywall.used}
-        limit={paywall.limit}
-        onClose={() => setPaywall(null)}
-      />
-    )}
     <div className="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-8 px-6 py-10 text-white sm:px-10">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -166,7 +149,6 @@ export function ResultsClient({ url }: { url: string }) {
         </>
       ) : null}
     </div>
-    </>
   );
 }
 
