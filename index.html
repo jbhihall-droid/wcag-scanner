@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WCAG Scanner — Lifetime Access $49 | Flash Deal (50 spots)</title>
+  <meta name="description" content="Paste any URL, get a full WCAG 2.1 accessibility violation report in seconds. Lifetime access for $49 — first 50 buyers only. No monthly fees ever." />
+  <meta property="og:title" content="WCAG Scanner — Lifetime $49 Flash Deal" />
+  <meta property="og:description" content="Paste any URL, get a WCAG 2.1 report in seconds. $49 one-time, first 50 buyers." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="WCAG Scanner — Lifetime $49 Flash Deal" />
+  <meta name="twitter:description" content="Paste any URL, get a WCAG 2.1 report in seconds. $49 one-time, first 50 buyers." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0f;
+      --surface: #13131a;
+      --border: #22223a;
+      --accent: #6366f1;
+      --accent-hover: #4f52d6;
+      --accent-glow: rgba(99,102,241,0.2);
+      --text: #f1f1f5;
+      --muted: #8b8ba0;
+      --green: #22d3a0;
+      --red: #f87171;
+      --yellow: #fbbf24;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(10,10,15,0.92);
+      backdrop-filter: blur(12px);
+    }
+    .logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); }
+    .nav-badge {
+      background: var(--accent); color: white;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.05em;
+      padding: 0.25rem 0.6rem; border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    /* FLASH BANNER */
+    .flash-banner {
+      background: linear-gradient(90deg, #4338ca, #6366f1, #8b5cf6);
+      text-align: center;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+    .flash-banner a { color: white; text-decoration: underline; }
+
+    /* HERO */
+    .hero {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 999px; padding: 0.35rem 1rem;
+      font-size: 0.8rem; font-weight: 600;
+      color: var(--green);
+      text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity:1; } 50% { opacity:0.4; } }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    h1 .highlight { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* PRICE CARD */
+    .price-card {
+      background: var(--surface);
+      border: 2px solid var(--accent);
+      border-radius: 1.25rem;
+      padding: 2.5rem 2rem;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+      box-shadow: 0 0 60px var(--accent-glow);
+      position: relative;
+    }
+    .ltd-badge {
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: var(--accent); color: white;
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;
+      padding: 0.3rem 1rem; border-radius: 999px;
+      text-transform: uppercase; white-space: nowrap;
+    }
+    .price-row {
+      display: flex; align-items: flex-end; justify-content: center;
+      gap: 0.5rem; margin-bottom: 0.5rem;
+    }
+    .price-big { font-size: 4rem; font-weight: 800; line-height: 1; letter-spacing: -0.04em; }
+    .price-old {
+      font-size: 1.1rem; color: var(--muted);
+      text-decoration: line-through; margin-bottom: 0.5rem;
+    }
+    .price-detail { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.5rem; }
+
+    /* SPOTS BAR */
+    .spots-bar-wrap { margin-bottom: 1.5rem; }
+    .spots-label {
+      display: flex; justify-content: space-between;
+      font-size: 0.8rem; margin-bottom: 0.4rem; color: var(--muted);
+    }
+    .spots-label span:last-child { color: var(--yellow); font-weight: 600; }
+    .bar-bg { background: #1e1e30; border-radius: 999px; height: 8px; overflow: hidden; }
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), #8b5cf6);
+      /* 0 of 50 sold = 0% fill — update dynamically */
+      width: 0%;
+      transition: width 0.8s ease;
+    }
+
+    /* CTA BUTTON */
+    .cta-btn {
+      display: block; width: 100%;
+      background: var(--accent);
+      color: white; text-decoration: none;
+      font-size: 1.05rem; font-weight: 700;
+      padding: 0.9rem 2rem;
+      border-radius: 0.7rem;
+      border: none; cursor: pointer;
+      transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+      letter-spacing: 0.01em;
+      text-align: center;
+    }
+    .cta-btn:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 30px rgba(99,102,241,0.35);
+    }
+    .cta-btn:active { transform: translateY(0); }
+    .cta-sub {
+      font-size: 0.78rem; color: var(--muted);
+      margin-top: 0.75rem; text-align: center;
+    }
+
+    /* TRUST ROW */
+    .trust-row {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+      justify-content: center; margin: 2rem 0;
+    }
+    .trust-chip {
+      display: flex; align-items: center; gap: 0.4rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 999px; padding: 0.35rem 0.8rem;
+      font-size: 0.8rem; color: var(--muted);
+    }
+    .trust-chip svg { width: 14px; height: 14px; color: var(--green); flex-shrink: 0; }
+
+    /* SECTION */
+    .section {
+      max-width: 760px; margin: 0 auto; padding: 4rem 2rem;
+    }
+    .section-title {
+      font-size: 1.5rem; font-weight: 700;
+      letter-spacing: -0.02em; margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    /* FEATURES */
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+    .feature-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 0.85rem; padding: 1.25rem;
+    }
+    .feature-icon { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .feature-title { font-weight: 600; margin-bottom: 0.25rem; font-size: 0.95rem; }
+    .feature-desc { font-size: 0.83rem; color: var(--muted); }
+
+    /* WHAT YOU GET */
+    .includes { list-style: none; display: grid; gap: 0.6rem; }
+    .includes li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-size: 0.95rem;
+    }
+    .check { color: var(--green); font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+
+    /* COMPARISON */
+    .comparison {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 1rem; overflow: hidden;
+    }
+    .comparison table { width: 100%; border-collapse: collapse; }
+    .comparison th, .comparison td {
+      padding: 0.75rem 1rem; font-size: 0.88rem;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    .comparison th { background: #0d0d14; font-weight: 700; color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .comparison td:not(:first-child) { text-align: center; }
+    .comparison .yes { color: var(--green); font-weight: 600; }
+    .comparison .no { color: var(--muted); }
+    .comparison .highlight-col { color: var(--text); font-weight: 600; }
+    .comparison tr:last-child td { border-bottom: none; }
+
+    /* FAQ */
+    .faq-list { display: grid; gap: 1rem; }
+    .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 0.85rem; padding: 1.25rem; }
+    .faq-q { font-weight: 600; margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .faq-a { font-size: 0.88rem; color: var(--muted); }
+
+    /* FINAL CTA */
+    .final-cta {
+      text-align: center;
+      background: linear-gradient(135deg, #0d0d1a, #13131f);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 3rem 2rem;
+      margin: 0 2rem 4rem;
+      max-width: 700px;
+      margin-left: auto; margin-right: auto;
+    }
+    .final-cta h2 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+    .final-cta p { color: var(--muted); margin-bottom: 1.5rem; }
+    .final-cta .cta-btn { max-width: 320px; margin: 0 auto; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center; padding: 2rem;
+      font-size: 0.8rem; color: var(--muted);
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 3rem 1.25rem 2rem; }
+      .section { padding: 3rem 1.25rem; }
+      .price-big { font-size: 3rem; }
+      .features { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="flash-banner">
+    ⚡ Flash deal: Lifetime access $49 — <strong>50 spots only</strong> &nbsp;|&nbsp; No monthly fees, ever.
+  </div>
+
+  <nav>
+    <div class="logo">WCAG<span>Scanner</span></div>
+    <span class="nav-badge">Flash Deal</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      Live — Flash LTD offer open
+    </div>
+    <h1>Stop paying monthly for<br /><span class="highlight">accessibility scans</span></h1>
+    <p class="hero-sub">
+      Paste any URL, get a full WCAG 2.1 violation report in seconds —
+      with exact element selectors so you know exactly what to fix.
+      <strong>Pay once, own it forever.</strong>
+    </p>
+
+    <div class="price-card">
+      <div class="ltd-badge">⚡ Lifetime Deal — 50 spots only</div>
+      <div class="price-row">
+        <span class="price-big">$49</span>
+      </div>
+      <div class="price-old">$9/month ($108/yr)</div>
+      <div class="price-detail">One-time payment &nbsp;·&nbsp; No subscription &nbsp;·&nbsp; All future updates included</div>
+
+      <div class="spots-bar-wrap">
+        <div class="spots-label">
+          <span>Spots claimed</span>
+          <span id="spots-remaining">50 remaining</span>
+        </div>
+        <div class="bar-bg"><div class="bar-fill" id="bar-fill"></div></div>
+      </div>
+
+      <a href="STRIPE_LTD_PAYMENT_LINK" id="cta-main" class="cta-btn">
+        Get lifetime access — $49 →
+      </a>
+      <p class="cta-sub">🔒 Secure checkout via Stripe &nbsp;·&nbsp; Instant access &nbsp;·&nbsp; 30-day refund</p>
+    </div>
+
+    <div class="trust-row">
+      <div class="trust-chip">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm3.25 5.25-3.5 4a.75.75 0 0 1-1.06.06l-2-2a.75.75 0 0 1 1.06-1.06l1.44 1.44 2.99-3.42a.75.75 0 0 1 1.07 1.05z"/></svg>
+        WCAG 2.1 compliant
+      </div>
+      <div class="trust-chip">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm3.25 5.25-3.5 4a.75.75 0 0 1-1.06.06l-2-2a.75.75 0 0 1 1.06-1.06l1.44 1.44 2.99-3.42a.75.75 0 0 1 1.07 1.05z"/></svg>
+        Exact element selectors
+      </div>
+      <div class="trust-chip">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm3.25 5.25-3.5 4a.75.75 0 0 1-1.06.06l-2-2a.75.75 0 0 1 1.06-1.06l1.44 1.44 2.99-3.42a.75.75 0 0 1 1.07 1.05z"/></svg>
+        No signup to scan
+      </div>
+      <div class="trust-chip">
+        <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm3.25 5.25-3.5 4a.75.75 0 0 1-1.06.06l-2-2a.75.75 0 0 1 1.06-1.06l1.44 1.44 2.99-3.42a.75.75 0 0 1 1.07 1.05z"/></svg>
+        30-day refund guarantee
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section">
+    <h2 class="section-title">Everything you need to audit accessibility</h2>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-title">Instant reports</div>
+        <div class="feature-desc">Paste a URL and get a full violation report in seconds — no setup, no configuration.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-title">Exact selectors</div>
+        <div class="feature-desc">Every violation includes the exact CSS selector so developers know precisely what to fix.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Severity tiers</div>
+        <div class="feature-desc">Violations ranked as Critical, Serious, and Moderate — fix the most impactful issues first.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔗</div>
+        <div class="feature-title">Any public URL</div>
+        <div class="feature-desc">Scan any publicly accessible page — client sites, competitor sites, or your own portfolio.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <div class="feature-title">WCAG 2.1 coverage</div>
+        <div class="feature-desc">Full coverage of WCAG 2.1 A and AA criteria — the standard required for ADA compliance.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <div class="feature-title">All future updates</div>
+        <div class="feature-desc">WCAG 3.0 support, batch scanning, and API access — included for lifetime buyers at no extra cost.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT YOU GET -->
+  <section class="section" style="padding-top:0">
+    <h2 class="section-title">What's included with Lifetime access</h2>
+    <ul class="includes" style="max-width:520px; margin:0 auto">
+      <li><span class="check">✓</span> Unlimited WCAG scans (no daily or monthly limits)</li>
+      <li><span class="check">✓</span> All current violation checks (WCAG 2.1 A + AA)</li>
+      <li><span class="check">✓</span> Exact CSS selectors for every violation</li>
+      <li><span class="check">✓</span> Severity breakdown (Critical / Serious / Moderate)</li>
+      <li><span class="check">✓</span> Scan any public URL — your clients, your portfolio</li>
+      <li><span class="check">✓</span> WCAG 3.0 support when released (in development)</li>
+      <li><span class="check">✓</span> Batch URL scanning (coming Q3 2026)</li>
+      <li><span class="check">✓</span> Export to CSV/PDF (coming Q3 2026)</li>
+      <li><span class="check">✓</span> API access for CI/CD integration (coming Q4 2026)</li>
+      <li><span class="check">✓</span> All future features — included, no upgrade needed</li>
+    </ul>
+  </section>
+
+  <!-- COMPARISON -->
+  <section class="section" style="padding-top:0">
+    <h2 class="section-title">How we compare</h2>
+    <div class="comparison">
+      <table>
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th style="color:#818cf8">WCAG Scanner<br/><small>Lifetime $49</small></th>
+            <th>axe DevTools<br/><small>$83/mo</small></th>
+            <th>Deque<br/><small>$149/mo</small></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>WCAG 2.1 A + AA</td><td class="yes highlight-col">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Exact CSS selectors</td><td class="yes highlight-col">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>No signup to scan</td><td class="yes highlight-col">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>One-time price</td><td class="yes highlight-col">✓ — $49</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>No monthly fees</td><td class="yes highlight-col">✓ forever</td><td class="no">$83/mo</td><td class="no">$149/mo</td></tr>
+          <tr><td>Future updates included</td><td class="yes highlight-col">✓</td><td class="no">Paid tier</td><td class="no">Paid tier</td></tr>
+          <tr><td>5-year cost</td><td class="yes highlight-col" style="color:#22d3a0"><strong>$49</strong></td><td class="no">$4,980</td><td class="no">$8,940</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="padding-top:0">
+    <h2 class="section-title">Frequently asked questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">What exactly is a WCAG 2.1 violation?</div>
+        <div class="faq-a">WCAG (Web Content Accessibility Guidelines) 2.1 violations are failures to meet accessibility standards required by the ADA, Section 508, and EN 301 549. Common examples: images without alt text, insufficient color contrast, form fields without labels, or keyboard traps. A violation means the element is failing a specific criterion.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How does the lifetime deal work?</div>
+        <div class="faq-a">Pay once, use it forever. You'll never see another charge. As the product grows — batch scanning, WCAG 3.0, API access — all of that is included for lifetime buyers at no extra cost. We limit spots to 50 to keep early access meaningful.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is there a refund policy?</div>
+        <div class="faq-a">Yes. If you buy and it doesn't work for your use case, email us within 30 days for a full refund, no questions asked.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What if I need to scan more than one site?</div>
+        <div class="faq-a">There's no limit on the number of URLs you can scan. Scan your clients' sites, your own portfolio, anything publicly accessible.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I use this to bill clients for accessibility audits?</div>
+        <div class="faq-a">Absolutely. Many of our users are web agencies and freelancers who include WCAG audits as part of their deliverables. At $49 one-time, you'll recoup the cost on your first client audit.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Does it scan JavaScript-heavy SPAs?</div>
+        <div class="faq-a">Yes. The scanner loads pages with a full browser (including JavaScript execution) before running WCAG checks, so React, Vue, Angular, and other SPA frameworks are fully supported.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <div class="final-cta">
+    <h2>50 spots. $49. No monthly fees.</h2>
+    <p>Join developers and agencies who audit accessibility without a monthly bill.<br/><strong id="spots-final">50 spots remaining</strong> at this price.</p>
+    <a href="STRIPE_LTD_PAYMENT_LINK" id="cta-final" class="cta-btn">
+      Claim lifetime access — $49 →
+    </a>
+    <p class="cta-sub" style="margin-top:0.75rem">🔒 Stripe checkout &nbsp;·&nbsp; 30-day refund &nbsp;·&nbsp; Instant access</p>
+  </div>
+
+  <footer>
+    <p>WCAG Scanner &nbsp;·&nbsp; Built with ♥ for accessibility-first developers</p>
+    <p style="margin-top:0.4rem"><a href="https://wcag-scanner.vercel.app" style="color:var(--accent); text-decoration:none;">Try a free scan →</a></p>
+  </footer>
+
+  <script>
+    // Spots counter — update this number as buyers come in
+    const SPOTS_REMAINING = 50;
+    const SPOTS_TOTAL = 50;
+    const PCT = Math.round(((SPOTS_TOTAL - SPOTS_REMAINING) / SPOTS_TOTAL) * 100);
+
+    document.getElementById('spots-remaining').textContent = SPOTS_REMAINING + ' remaining';
+    document.getElementById('spots-final').textContent = SPOTS_REMAINING + ' spots remaining';
+    document.getElementById('bar-fill').style.width = PCT + '%';
+
+    // Swap placeholder href once Stripe link is known
+    const STRIPE_LINK = 'STRIPE_LTD_PAYMENT_LINK';
+    if (STRIPE_LINK !== 'STRIPE_LTD_PAYMENT_LINK') {
+      document.getElementById('cta-main').href = STRIPE_LINK;
+      document.getElementById('cta-final').href = STRIPE_LINK;
+    } else {
+      // Fallback: waitlist form (collect interest before Stripe is live)
+      const WAITLIST_LINK = '#waitlist';
+      document.getElementById('cta-main').href = WAITLIST_LINK;
+      document.getElementById('cta-final').href = WAITLIST_LINK;
+      document.getElementById('cta-main').textContent = 'Join waitlist — get notified when live →';
+      document.getElementById('cta-final').textContent = 'Join waitlist — get notified when live →';
+    }
+  </script>
+
+  <!-- WAITLIST SECTION (shown when Stripe not yet active) -->
+  <section id="waitlist" class="section" style="padding-top:0; max-width:560px; margin:0 auto 4rem;">
+    <div style="background:var(--surface); border:1px solid var(--border); border-radius:1rem; padding:2rem; text-align:center;">
+      <h3 style="font-size:1.2rem; font-weight:700; margin-bottom:0.5rem;">Get notified when payment goes live</h3>
+      <p style="color:var(--muted); font-size:0.88rem; margin-bottom:1.25rem;">Leave your email — we'll ping you the moment the $49 lifetime offer activates. Spots go fast.</p>
+      <form action="https://formspree.io/f/FORMSPREE_ID" method="POST" style="display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:center;">
+        <input type="email" name="email" required placeholder="your@email.com"
+          style="flex:1; min-width:200px; padding:0.65rem 1rem; border-radius:0.5rem; border:1px solid var(--border); background:#0d0d14; color:var(--text); font-size:0.9rem; outline:none;" />
+        <button type="submit" style="background:var(--accent); color:white; border:none; border-radius:0.5rem; padding:0.65rem 1.25rem; font-size:0.9rem; font-weight:600; cursor:pointer; white-space:nowrap;">
+          Notify me
+        </button>
+      </form>
+      <p style="font-size:0.75rem; color:var(--muted); margin-top:0.75rem;">No spam. Just one email when the deal activates.</p>
+    </div>
+  </section>
+
+</body>
+</html>
