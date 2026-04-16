@@ -310,7 +310,7 @@
         <div class="bar-bg"><div class="bar-fill" id="bar-fill"></div></div>
       </div>
 
-      <a href="STRIPE_LTD_PAYMENT_LINK" id="cta-main" class="cta-btn">
+      <a href="https://buy.stripe.com/3cI28t5PY3MY7pCbPNaR204" id="cta-main" class="cta-btn">
         Get lifetime access — $49 →
       </a>
       <p class="cta-sub">🔒 Secure checkout via Stripe &nbsp;·&nbsp; Instant access &nbsp;·&nbsp; 30-day refund</p>
@@ -451,7 +451,7 @@
   <div class="final-cta">
     <h2>50 spots. $49. No monthly fees.</h2>
     <p>Join developers and agencies who audit accessibility without a monthly bill.<br/><strong id="spots-final">50 spots remaining</strong> at this price.</p>
-    <a href="STRIPE_LTD_PAYMENT_LINK" id="cta-final" class="cta-btn">
+    <a href="https://buy.stripe.com/3cI28t5PY3MY7pCbPNaR204" id="cta-final" class="cta-btn">
       Claim lifetime access — $49 →
     </a>
     <p class="cta-sub" style="margin-top:0.75rem">🔒 Stripe checkout &nbsp;·&nbsp; 30-day refund &nbsp;·&nbsp; Instant access</p>
@@ -473,18 +473,9 @@
     document.getElementById('bar-fill').style.width = PCT + '%';
 
     // Swap placeholder href once Stripe link is known
-    const STRIPE_LINK = 'STRIPE_LTD_PAYMENT_LINK';
-    if (STRIPE_LINK !== 'STRIPE_LTD_PAYMENT_LINK') {
-      document.getElementById('cta-main').href = STRIPE_LINK;
-      document.getElementById('cta-final').href = STRIPE_LINK;
-    } else {
-      // Fallback: waitlist form (collect interest before Stripe is live)
-      const WAITLIST_LINK = '#waitlist';
-      document.getElementById('cta-main').href = WAITLIST_LINK;
-      document.getElementById('cta-final').href = WAITLIST_LINK;
-      document.getElementById('cta-main').textContent = 'Join waitlist — get notified when live →';
-      document.getElementById('cta-final').textContent = 'Join waitlist — get notified when live →';
-    }
+    const STRIPE_LINK = 'https://buy.stripe.com/3cI28t5PY3MY7pCbPNaR204';
+    document.getElementById('cta-main').href = STRIPE_LINK;
+    document.getElementById('cta-final').href = STRIPE_LINK;
   </script>
 
   <!-- WAITLIST SECTION (shown when Stripe not yet active) -->
@@ -505,3 +496,4 @@
 
 </body>
 </html>
+
